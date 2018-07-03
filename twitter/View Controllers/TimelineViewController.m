@@ -10,8 +10,9 @@
 #import "APIManager.h"
 #import "TweetCell.h"
 #import "Tweet.h"
+#import "ComposeViewController.h"
 
-@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
 
 @property(strong, nonatomic) NSMutableArray *tweetArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,10 +22,12 @@
 
 @implementation TimelineViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:refreshControl atIndex:0];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -61,15 +64,44 @@
     return self.tweetArray.count;
 }
 
-/*
+// Makes a network request to get updated data
+// Updates the tableView with the new data
+// Hides the RefreshControl
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    
+    //create request
+    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+        if (tweets) {
+            [self.tweetArray removeAllObjects];
+            [self.tweetArray addObjectsFromArray:tweets];
+            
+            [self.tableView reloadData];
+            [refreshControl endRefreshing];
+        }
+        else {
+        }
+    }];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    composeController.delegate = self;
 }
-*/
 
+
+
+- (void)didTweet:(Tweet *)tweet {
+    [self.tweetArray addObject:tweet];
+    [self.tableView reloadData];
+}
+
+
+//@synthesize delegate;
 
 @end

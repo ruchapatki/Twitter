@@ -8,6 +8,7 @@
 
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "APIManager.h"
 
 @implementation TweetCell
 
@@ -57,6 +58,33 @@
     } failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+
+- (IBAction)didTapFavorite:(id)sender {
+    self.tweet.favorited = YES;
+    self.tweet.favoriteCount += 1;
+    
+    //update UI --> TODO: make a refreshData() method!!!!!!!
+    [self setTweet:self.tweet];
+    
+    [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+        if(error){
+            NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+        }
+        else{
+            NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+        }
+    }];
+}
+
+- (IBAction)didTapRetweet:(id)sender {
+    self.tweet.retweeted = YES;
+    self.tweet.retweetCount += 1;
+    
+    [self setTweet:self.tweet];
+    
+    
 }
 
 @end
