@@ -26,6 +26,7 @@
 
 @property(strong, nonatomic) Tweet* tweet;
 - (void)setTweet:(Tweet *)tweet;
+- (void)refreshData: (Tweet *)tweet;
 - (IBAction)didTapFavorite:(id)sender;
 - (IBAction)didTapRetweet:(id)sender;
 

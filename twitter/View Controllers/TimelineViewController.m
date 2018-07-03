@@ -102,6 +102,4 @@
 }
 
 
-//@synthesize delegate;
-
 @end
