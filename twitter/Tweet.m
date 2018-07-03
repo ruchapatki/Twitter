@@ -36,7 +36,9 @@
         self.user = [[User alloc] initWithDictionary:user];
         
         //Getting URL for profile picture image
-        self.imageURL = dictionary[@"profile_image_url"];
+        self.imageURL = dictionary[@"user"][@"profile_image_url"];
+        self.screenName = dictionary[@"user"][@"screen_name"];
+        
         
         // TODO: Format and set createdAtString
         NSString *createdAtOriginalString = dictionary[@"created_at"];

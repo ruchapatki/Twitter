@@ -39,10 +39,6 @@
             [self.tableView reloadData];
             
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-//            for (NSDictionary *dictionary in tweets) {
-//                NSString *text = dictionary[@"text"];
-//                NSLog(@"%@", text);
-//            }
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
