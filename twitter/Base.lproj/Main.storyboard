@@ -180,6 +180,7 @@
                                             <outlet property="timestamp" destination="Jin-26-8is" id="cyb-IQ-3Ji"/>
                                             <outlet property="tweetLabel" destination="dky-PE-GTb" id="IPf-ss-WSD"/>
                                             <outlet property="userImage" destination="z8j-Ms-WfV" id="JP9-SZ-jjS"/>
+                                            <segue destination="aL8-Je-jZ5" kind="show" identifier="toDetail" id="qGT-wg-sYl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -202,7 +203,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="edit-icon" id="htn-ku-teu">
                             <connections>
-                                <segue destination="QMz-LU-RXT" kind="presentation" id="scw-G0-dta"/>
+                                <segue destination="QMz-LU-RXT" kind="presentation" identifier="toCompose" id="scw-G0-dta"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -251,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeS-qa-V2C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2413.5999999999999" y="770.46476761619192"/>
+            <point key="canvasLocation" x="2446" y="1087"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WUT-Ke-VeR">
@@ -271,6 +272,64 @@
             </objects>
             <point key="canvasLocation" x="860" y="36.431784107946029"/>
         </scene>
+        <!--Details View Controller-->
+        <scene sceneID="EcB-Oe-qbc">
+            <objects>
+                <viewController id="aL8-Je-jZ5" customClass="DetailsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iyT-8U-Fdi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ezU-6M-2SA">
+                                <rect key="frame" x="16" y="80" width="70" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rucha Patki" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQv-UJ-KMg">
+                                <rect key="frame" x="104" y="93" width="255" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@rucha_patki" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6g-1p-qKS">
+                                <rect key="frame" x="104" y="119" width="255" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFJ-HP-shH">
+                                <rect key="frame" x="16" y="172" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bH-P5-80p">
+                                <rect key="frame" x="278" y="617" width="29" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="retweet-icon"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iwk-6G-USY">
+                                <rect key="frame" x="328" y="617" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="favor-icon"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="3HR-Cz-J3d"/>
+                    </view>
+                    <connections>
+                        <outlet property="authorLabel" destination="UQv-UJ-KMg" id="wzH-GC-ECV"/>
+                        <outlet property="screenName" destination="g6g-1p-qKS" id="x5O-a2-bp8"/>
+                        <outlet property="tweetLabel" destination="sFJ-HP-shH" id="lZV-hJ-Pjh"/>
+                        <outlet property="userImage" destination="ezU-6M-2SA" id="bT5-Gy-8tb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bKd-7Z-Sfp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2445.5999999999999" y="-392.65367316341832"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Whu-RQ-9Ri">
             <objects>
@@ -287,7 +346,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6r-KL-dnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2414" y="36"/>
+            <point key="canvasLocation" x="2446" y="368"/>
         </scene>
     </scenes>
     <resources>
