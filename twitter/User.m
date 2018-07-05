@@ -15,6 +15,12 @@
     if (self) {
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
+        self.profileImageURL = dictionary[@"profile_image_url"];
+        self.backgroundImageURL = dictionary[@"profile_banner_url"];
+        self.numberFollowers = dictionary[@"followers_count"];
+        self.numberFollowing = dictionary[@"friends_count"];
+        self.numberTweets = dictionary[@"statuses_count"];
+        
         // Initialize any other properties
     }
     return self;

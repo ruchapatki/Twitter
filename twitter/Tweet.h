@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) NSString *screenName;
+@property (strong, nonatomic) NSString *backgroundImageURL;
 
 // For Retweets
 @property (strong, nonatomic) User *retweetedByUser;  // user who retweeted if tweet is retweet

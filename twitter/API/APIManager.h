@@ -23,4 +23,6 @@
 
 - (void)replyToTweet:(NSString *)text reply:(NSString *) reply_id username:(NSString *) username completion:(void (^)(Tweet *, NSError *))completion;
 
+- (void)getProfileInfo:(void(^)(NSDictionary *accountInfo, NSError *error))completion;
+
 @end

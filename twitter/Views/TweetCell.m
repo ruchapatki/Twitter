@@ -33,6 +33,18 @@
     self.retweetCount.text = [NSString stringWithFormat:@"%i",self.tweet.retweetCount];
     self.favCount.text = [NSString stringWithFormat:@"%i", self.tweet.favoriteCount];
     
+    NSString *fullImageURLString = self.tweet.imageURL;
+
+    NSURL *url = [NSURL URLWithString:fullImageURLString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
+    [self.userImage setImageWithURLRequest: request placeholderImage:nil success:^(NSURLRequest * imageRequest, NSHTTPURLResponse *  imageResponse, UIImage * image) {
+        //success
+        self.userImage.image = image;
+    } failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
     if(self.tweet.retweeted == YES){
         self.retweetButton.imageView.image = [UIImage imageNamed: @"retweet-icon-green"];
     }
@@ -46,18 +58,6 @@
     else{
         self.favButton.imageView.image = [UIImage imageNamed:@"favor-icon"];
     }
-    
-    NSString *fullImageURLString = self.tweet.imageURL;
-
-    NSURL *url = [NSURL URLWithString:fullImageURLString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-
-    [self.userImage setImageWithURLRequest: request placeholderImage:nil success:^(NSURLRequest * imageRequest, NSHTTPURLResponse *  imageResponse, UIImage * image) {
-        //success
-        self.userImage.image = image;
-    } failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error) {
-        NSLog(@"Error: %@", error);
-    }];
 }
 
 - (void)refreshData: (Tweet *)tweet{

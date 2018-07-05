@@ -155,4 +155,19 @@ static NSString * const consumerSecret = @"WX3lbC7jexkqDJUxBVgqO0UuLnciS3A16MwOt
 }
 
 
+- (void)getProfileInfo:(void(^)(NSDictionary *accountInfo, NSError *error))completion {
+    
+    [self GET:@"1.1/account/verify_credentials.json"
+   parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable accountInfo) {
+       
+       completion(accountInfo, nil);
+       
+   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+       
+       NSDictionary *accountInfo = nil;
+       completion(accountInfo, error);
+   }];
+}
+
+
 @end

@@ -13,6 +13,11 @@
 // MARK: Properties
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *screenName;
+@property (strong, nonatomic) NSString *profileImageURL;
+@property (strong, nonatomic) NSString *backgroundImageURL;
+@property (strong, nonatomic) NSNumber *numberFollowers;
+@property (strong, nonatomic) NSNumber *numberFollowing;
+@property (strong, nonatomic) NSNumber *numberTweets;
 
 //initializer
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

@@ -39,6 +39,7 @@
         //Getting URL for profile picture image
         self.imageURL = dictionary[@"user"][@"profile_image_url"];
         self.screenName = dictionary[@"user"][@"screen_name"];
+        self.backgroundImageURL = dictionary[@"user"][@"profile_banner_url"];
         
         
         // TODO: Format and set createdAtString
