@@ -79,13 +79,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="126.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z8j-Ms-WfV">
+                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z8j-Ms-WfV">
                                                     <rect key="frame" x="15" y="11" width="60" height="60"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="7rD-Nr-kAI"/>
                                                         <constraint firstAttribute="height" constant="60" id="GBP-4M-3xG"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="eEo-SE-ZwC" appends="YES" id="3Ut-S7-hGE"/>
+                                                    </connections>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rucha Patki" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUV-Fz-aTy">
                                                     <rect key="frame" x="83" y="14" width="94.5" height="20"/>
@@ -178,6 +181,7 @@
                                             <outlet property="retweetButton" destination="it4-sS-CA7" id="Fni-KQ-IJX"/>
                                             <outlet property="retweetCount" destination="tPi-Ti-Bis" id="TBn-Ug-ZSr"/>
                                             <outlet property="screenName" destination="9lA-AE-cjk" id="YkC-9u-cEB"/>
+                                            <outlet property="tapGestureRecognizer" destination="eEo-SE-ZwC" id="WhE-pL-12Z"/>
                                             <outlet property="timestamp" destination="Jin-26-8is" id="cyb-IQ-3Ji"/>
                                             <outlet property="tweetLabel" destination="dky-PE-GTb" id="IPf-ss-WSD"/>
                                             <outlet property="userImage" destination="z8j-Ms-WfV" id="JP9-SZ-jjS"/>
@@ -211,10 +215,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="cDH-ez-zKa" id="fQo-hF-SSw"/>
-                        <segue destination="Y9n-DJ-feI" kind="show" identifier="toProfile" id="P0Z-lk-Txq"/>
+                        <segue destination="jjv-1n-HfQ" kind="show" identifier="toProfile" id="vvZ-HS-xG6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQh-hN-GQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="eEo-SE-ZwC"/>
             </objects>
             <point key="canvasLocation" x="1708" y="-340"/>
         </scene>
@@ -354,7 +359,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j2k-xf-MZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3268" y="542"/>
+            <point key="canvasLocation" x="2679" y="734"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tul-aK-1uE">
@@ -692,24 +697,6 @@
             </objects>
             <point key="canvasLocation" x="834" y="966"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Dq0-u2-QcQ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y9n-DJ-feI" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yJf-ga-gq6">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="LZh-05-cvo" kind="relationship" relationship="rootViewController" id="z9a-a7-zEn"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e5b-7r-zhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2494" y="542"/>
-        </scene>
     </scenes>
     <resources>
         <image name="TwitterLogoBlue" width="200" height="200"/>
@@ -721,4 +708,7 @@
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vvZ-HS-xG6"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "TweetCell.h"
 
 @interface ProfileViewController : UIViewController
 
 @property (nonatomic, strong) User *user;
+//@property (nonatomic, weak) id<TweetCellDelegate> delegate;
 
 @end

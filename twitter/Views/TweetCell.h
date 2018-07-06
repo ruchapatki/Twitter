@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
+#import "TweetCell.h"
+#import "User.h"
+
+@protocol TweetCellDelegate;
+
 
 @interface TweetCell : UITableViewCell
+
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGestureRecognizer;
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
@@ -21,15 +28,20 @@
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *favButton;
 
-
-
-
 @property(strong, nonatomic) Tweet* tweet;
 - (void)setTweet:(Tweet *)tweet;
 - (void)refreshData: (Tweet *)tweet;
 - (IBAction)didTapFavorite:(id)sender;
 - (IBAction)didTapRetweet:(id)sender;
 
+@property (nonatomic, weak) id<TweetCellDelegate> delegate;
 
+@end
+
+
+
+@protocol TweetCellDelegate
+
+- (void)tweetCell:(TweetCell *) tweetCell didTap: (User *)user;
 
 @end

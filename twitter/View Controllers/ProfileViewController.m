@@ -10,6 +10,7 @@
 #import "APIManager.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
+#import "TweetCell.h"
 
 @interface ProfileViewController ()
 
@@ -36,18 +37,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[APIManager shared] getProfileInfo:^(NSDictionary *accountInfo, NSError *error) {
-        if (accountInfo) {
-            NSLog(@"😎😎😎 Successfully loaded profile info");
-            NSLog(@"%@", accountInfo);
-            
-            User *user = [[User alloc]initWithDictionary:accountInfo];
-            self.user = user;
-            [self setViews];
-        } else {
-            NSLog(@"😫😫😫 Error loading profile info: %@", error.localizedDescription);
-        }
-    }];
+    if(self.user == nil){
+        [[APIManager shared] getProfileInfo:^(NSDictionary *accountInfo, NSError *error) {
+            if (accountInfo) {
+                NSLog(@"😎😎😎 Successfully loaded profile info");
+                NSLog(@"%@", accountInfo);
+                
+                User *user = [[User alloc]initWithDictionary:accountInfo];
+                self.user = user;
+                [self setViews];
+            } else {
+                NSLog(@"😫😫😫 Error loading profile info: %@", error.localizedDescription);
+            }
+        }];
+    }
+    else{
+        [self setViews];
+    }
 }
 
 - (void)setViews{
@@ -96,5 +102,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end
