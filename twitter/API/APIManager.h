@@ -20,9 +20,8 @@
 - (void)unfavorite:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 - (void)retweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 - (void)unretweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
-
 - (void)replyToTweet:(NSString *)text reply:(NSString *) reply_id username:(NSString *) username completion:(void (^)(Tweet *, NSError *))completion;
-
 - (void)getProfileInfo:(void(^)(NSDictionary *accountInfo, NSError *error))completion;
+- (void)getHomeTimelineAgain:(NSNumber *) number completion:(void(^)(NSArray *tweets, NSError *error))completion;
 
 @end

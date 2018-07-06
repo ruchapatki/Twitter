@@ -152,27 +152,14 @@
 }
 
 -(void)loadMoreData{
-//    
-//    // ... Create the NSURLRequest (myRequest) ...
-//    
-//    // Configure session so that completion handler is executed on main UI thread
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    NSURLSession *session  = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *requestError) {
-//        if (requestError != nil) {
-//            
-//        }
-//        else
-//        {
-//            // Update flag
-//            self.isMoreDataLoading = false;
-//            
-//            // Use the new data to update the data source ...
-//            // Reload the tableView now that there is new data
-//            [self.tableView reloadData];
-//        }
-//    }];
-//    [task resume];
+    [[APIManager shared] getHomeTimelineAgain:[NSNumber numberWithInt:200] completion:^(NSArray *tweets, NSError *error) {
+        if (tweets) {
+            self.tweetArray = [NSMutableArray arrayWithArray:tweets];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
 }
 
 

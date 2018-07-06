@@ -50,7 +50,6 @@ static NSString * const consumerSecret = @"WX3lbC7jexkqDJUxBVgqO0UuLnciS3A16MwOt
 
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion {
     
-    
     [self GET:@"1.1/statuses/home_timeline.json"
    parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
 
@@ -60,7 +59,6 @@ static NSString * const consumerSecret = @"WX3lbC7jexkqDJUxBVgqO0UuLnciS3A16MwOt
        
        NSMutableArray *tweetArray = [NSMutableArray array];
        tweetArray = [Tweet tweetsWithArray:tweetDictionaries];
-
        completion(tweetArray, nil);
 
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -162,10 +160,25 @@ static NSString * const consumerSecret = @"WX3lbC7jexkqDJUxBVgqO0UuLnciS3A16MwOt
        
        completion(accountInfo, nil);
        
+       NSLog(@"%@", accountInfo);
+       
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
        
        NSDictionary *accountInfo = nil;
        completion(accountInfo, error);
+   }];
+}
+
+- (void)getHomeTimelineAgain:(NSNumber *) number completion:(void(^)(NSArray *tweets, NSError *error))completion {
+    
+    NSDictionary *parameters = @{@"count":number};
+    [self GET:@"1.1/statuses/home_timeline.json"
+   parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+       NSMutableArray *tweets = [Tweet tweetsWithArray:tweetDictionaries];
+       completion(tweets,nil);
+       
+   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+       completion(nil, error);
    }];
 }
 
