@@ -16,11 +16,11 @@
 #import "DetailsViewController.h"
 #import "ProfileViewController.h"
 
-@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, TweetCellDelegate>
+@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, TweetCellDelegate, UIScrollViewDelegate>
 
 @property(strong, nonatomic) NSMutableArray *tweetArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-//@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGestureRecognizer;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
@@ -135,6 +135,44 @@
 
 - (void)tweetCell:(TweetCell *)tweetCell didTap:(User *)user{
     [self performSegueWithIdentifier:@"toProfile" sender:user];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            [self loadMoreData];
+        }
+    }
+}
+
+-(void)loadMoreData{
+//    
+//    // ... Create the NSURLRequest (myRequest) ...
+//    
+//    // Configure session so that completion handler is executed on main UI thread
+//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    NSURLSession *session  = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *requestError) {
+//        if (requestError != nil) {
+//            
+//        }
+//        else
+//        {
+//            // Update flag
+//            self.isMoreDataLoading = false;
+//            
+//            // Use the new data to update the data source ...
+//            // Reload the tableView now that there is new data
+//            [self.tableView reloadData];
+//        }
+//    }];
+//    [task resume];
 }
 
 

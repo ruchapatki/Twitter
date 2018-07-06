@@ -24,7 +24,6 @@
 		95B6CFC920EBF8D400C4017C /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B6CFC820EBF8D400C4017C /* ComposeViewController.m */; };
 		95C0201C20EE934300025273 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C0201B20EE934300025273 /* ReplyViewController.m */; };
 		95E88B2020EEC985003939E3 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E88B1F20EEC985003939E3 /* ProfileViewController.m */; };
-		95E88B2320EEE983003939E3 /* OtherProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E88B2220EEE983003939E3 /* OtherProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,8 +60,6 @@
 		95C0201B20EE934300025273 /* ReplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
 		95E88B1E20EEC985003939E3 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		95E88B1F20EEC985003939E3 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		95E88B2120EEE983003939E3 /* OtherProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherProfileViewController.h; sourceTree = "<group>"; };
-		95E88B2220EEE983003939E3 /* OtherProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,8 +164,6 @@
 				95C0201B20EE934300025273 /* ReplyViewController.m */,
 				95E88B1E20EEC985003939E3 /* ProfileViewController.h */,
 				95E88B1F20EEC985003939E3 /* ProfileViewController.m */,
-				95E88B2120EEE983003939E3 /* OtherProfileViewController.h */,
-				95E88B2220EEE983003939E3 /* OtherProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -306,7 +301,6 @@
 				6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */,
 				6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */,
 				6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */,
-				95E88B2320EEE983003939E3 /* OtherProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

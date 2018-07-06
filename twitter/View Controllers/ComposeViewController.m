@@ -12,6 +12,8 @@
 @interface ComposeViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UILabel *charCount;
+
 
 
 @end
@@ -21,7 +23,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.textView.delegate = self;
+
 }
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    // TODO: Check the proposed new text character count
+    // Allow or disallow the new text
+    
+    // Set the max character limit
+    int characterLimit = 140;
+    
+    // Construct what the new text would be if we allowed the user's latest edit
+    NSString *newText = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    unsigned long count = characterLimit - newText.length;
+    self.charCount.text = [NSString stringWithFormat:@"%ld", count];
+    
+    // The new text should be allowed? True/False
+    return newText.length < characterLimit;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
