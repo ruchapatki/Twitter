@@ -1,19 +1,15 @@
 //
-//  ProfileViewController.m
+//  OtherProfileViewController.m
 //  twitter
 //
 //  Created by Rucha Patki on 7/5/18.
 //  Copyright © 2018 Emerson Malca. All rights reserved.
 //
 
-#import "ProfileViewController.h"
-#import "APIManager.h"
-#import "User.h"
+#import "OtherProfileViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface ProfileViewController ()
-
-
+@interface OtherProfileViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -21,33 +17,23 @@
 @property (weak, nonatomic) IBOutlet UILabel *screenName;
 @property (weak, nonatomic) IBOutlet UILabel *bio;
 
-
 @property (weak, nonatomic) IBOutlet UILabel *numberFollowing;
 @property (weak, nonatomic) IBOutlet UILabel *numberFollowers;
 @property (weak, nonatomic) IBOutlet UILabel *numberTweets;
 
-
-
-
 @end
 
-@implementation ProfileViewController
+@implementation OtherProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[APIManager shared] getProfileInfo:^(NSDictionary *accountInfo, NSError *error) {
-        if (accountInfo) {
-            NSLog(@"😎😎😎 Successfully loaded profile info");
-            NSLog(@"%@", accountInfo);
-            
-            User *user = [[User alloc]initWithDictionary:accountInfo];
-            self.user = user;
-            [self setViews];
-        } else {
-            NSLog(@"😫😫😫 Error loading profile info: %@", error.localizedDescription);
-        }
-    }];
+    // Do any additional setup after loading the view.
+    [self setViews];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)setViews{
@@ -80,11 +66,6 @@
     } failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error) {
         NSLog(@"Error: %@", error);
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

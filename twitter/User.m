@@ -20,6 +20,7 @@
         self.numberFollowers = dictionary[@"followers_count"];
         self.numberFollowing = dictionary[@"friends_count"];
         self.numberTweets = dictionary[@"statuses_count"];
+        self.bio = dictionary[@"description"];
         
         // Initialize any other properties
     }

@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSNumber *numberFollowers;
 @property (strong, nonatomic) NSNumber *numberFollowing;
 @property (strong, nonatomic) NSNumber *numberTweets;
+@property (strong, nonatomic) NSString *bio;
 
 //initializer
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

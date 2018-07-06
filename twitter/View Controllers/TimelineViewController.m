@@ -14,12 +14,13 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "DetailsViewController.h"
+#import "ProfileViewController.h"
 
 @interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
 
 @property(strong, nonatomic) NSMutableArray *tweetArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+//@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGestureRecognizer;
 
 @end
 
@@ -60,6 +61,13 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     Tweet * tweet = self.tweetArray[indexPath.row];
     [cell setTweet:tweet];
+    
+    //adding gesture recognizer
+//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
+//    tapGestureRecognizer.numberOfTapsRequired = 1;
+//    [cell.userImage setUserInteractionEnabled:YES];
+//    [cell.userImage addGestureRecognizer:tapGestureRecognizer];
+    
     return cell;
 }
 
@@ -106,7 +114,13 @@
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.tweet = tweet;
     }
-    
+//    else if([segue.identifier isEqualToString:@"toProfile"]){
+//        TweetCell *tappedCell = sender;
+//        User *user = tappedCell.tweet.user;
+//
+//        ProfileViewController *profileViewController = [segue destinationViewController];
+//        profileViewController.user = user;
+//    }
 }
 
 - (IBAction)logoutPressed:(id)sender {
@@ -118,6 +132,9 @@
     [[APIManager shared] logout];
 }
 
+- (IBAction)didTap:(id)sender {
+    [self performSegueWithIdentifier:@"toProfile" sender:nil];
+}
 
 
 - (void)didTweet:(Tweet *)tweet {
