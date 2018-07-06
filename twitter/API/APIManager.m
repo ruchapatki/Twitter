@@ -157,11 +157,7 @@ static NSString * const consumerSecret = @"WX3lbC7jexkqDJUxBVgqO0UuLnciS3A16MwOt
     
     [self GET:@"1.1/account/verify_credentials.json"
    parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable accountInfo) {
-       
        completion(accountInfo, nil);
-       
-       NSLog(@"%@", accountInfo);
-       
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
        
        NSDictionary *accountInfo = nil;
@@ -179,6 +175,39 @@ static NSString * const consumerSecret = @"WX3lbC7jexkqDJUxBVgqO0UuLnciS3A16MwOt
        
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
        completion(nil, error);
+   }];
+}
+
+- (void)getUserTimeline: (NSString *) screenName completion:(void(^)(NSArray *tweets, NSError *error))completion {
+    
+    NSDictionary *parameters = @{@"screen_name":screenName};
+    
+    [self GET:@"1.1/statuses/user_timeline.json"
+   parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+       
+       // Manually cache the tweets. If the request fails, restore from cache if possible.
+       NSData *data = [NSKeyedArchiver archivedDataWithRootObject:tweetDictionaries];
+       [[NSUserDefaults standardUserDefaults] setValue:data forKey:@"usertimeline_tweets"];
+       
+       NSMutableArray *tweetArray = [NSMutableArray array];
+       tweetArray = [Tweet tweetsWithArray:tweetDictionaries];
+       
+       NSLog(@"TWEET DICTIONARIES: %@", tweetDictionaries);
+       
+       
+       completion(tweetArray, nil);
+       
+   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+       
+       NSArray *tweetDictionaries = nil;
+       
+       // Fetch tweets from cache if possible
+       NSData *data = [[NSUserDefaults standardUserDefaults] valueForKey:@"usertimeline_tweets"];
+       if (data != nil) {
+           tweetDictionaries = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+       }
+       
+       completion(tweetDictionaries, error);
    }];
 }
 

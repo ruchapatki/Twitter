@@ -12,7 +12,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "TweetCell.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource>
 
 
 
@@ -27,8 +27,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberFollowers;
 @property (weak, nonatomic) IBOutlet UILabel *numberTweets;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-
+@property(strong, nonatomic) NSMutableArray *tweetArray;
 
 @end
 
@@ -37,12 +38,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     if(self.user == nil){
         [[APIManager shared] getProfileInfo:^(NSDictionary *accountInfo, NSError *error) {
             if (accountInfo) {
                 NSLog(@"😎😎😎 Successfully loaded profile info");
-                NSLog(@"%@", accountInfo);
-                
                 User *user = [[User alloc]initWithDictionary:accountInfo];
                 self.user = user;
                 [self setViews];
@@ -55,6 +57,19 @@
         [self setViews];
     }
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
+    Tweet * tweet = self.tweetArray[indexPath.row];
+    [cell setTweet:tweet];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.tweetArray.count;
+}
+
 
 - (void)setViews{
     self.nameLabel.text = self.user.name;
@@ -85,6 +100,27 @@
         self.backgroundImage.image = image;
     } failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error) {
         NSLog(@"Error: %@", error);
+    }];
+    
+    
+    //TABLEVIEW
+    //initializes array
+    self.tweetArray = [NSMutableArray array];
+    
+    // Get timeline
+    
+    NSString *screenName = self.user.screenName;
+    NSLog(@"screen name: %@", screenName);
+    
+    [[APIManager shared] getUserTimeline:screenName completion:^(NSArray *tweets, NSError *error) {
+        if (tweets) {
+            [self.tweetArray addObjectsFromArray:tweets];
+            [self.tableView reloadData];
+            
+            NSLog(@"😎😎😎 Successfully loaded user timeline");
+        } else {
+            NSLog(@"😫😫😫 Error getting user timeline: %@", error.localizedDescription);
+        }
     }];
 }
 

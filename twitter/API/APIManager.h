@@ -23,5 +23,6 @@
 - (void)replyToTweet:(NSString *)text reply:(NSString *) reply_id username:(NSString *) username completion:(void (^)(Tweet *, NSError *))completion;
 - (void)getProfileInfo:(void(^)(NSDictionary *accountInfo, NSError *error))completion;
 - (void)getHomeTimelineAgain:(NSNumber *) number completion:(void(^)(NSArray *tweets, NSError *error))completion;
+- (void)getUserTimeline: (NSString *) screenName completion:(void(^)(NSArray *tweets, NSError *error))completion;
 
 @end
