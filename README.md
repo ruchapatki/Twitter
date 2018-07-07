@@ -2,7 +2,7 @@
 
 Twitter is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 2 hours spent in total
+Time spent: 9 hours spent in total
 
 ## User Stories
 
@@ -47,30 +47,26 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Examples of situations in which we would have to use delegate.
+2. Placeholder text in a textView.
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+You can find walkthroughs of implemented user stories [here](https://i.imgur.com/aYhC9Lx.gif) and [here](https://i.imgur.com/w9eS379.gif).
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIFs created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+This app was more challenging than the last. The hardest part was figuring out the TweetCell delegate for the profile view. Figuring out how to correctly implement autolayout was also difficult, but manageable towards the end.
 
 ## Credits
-
-List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright 2018 Rucha Patki
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
