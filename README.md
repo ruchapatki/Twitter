@@ -52,7 +52,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 ## Video Walkthrough
 
-You can find walkthroughs of implemented user stories [here](https://i.imgur.com/aYhC9Lx.gif) and [here](https://i.imgur.com/w9eS379.gif).
+You can find walkthroughs of implemented user stories [here](https://i.imgur.com/w9eS379.gif) and [here](https://i.imgur.com/aYhC9Lx.gif).
 
 GIFs created with [LiceCap](http://www.cockos.com/licecap/).
 
